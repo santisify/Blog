@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ylb.mapper.MsgStoreMapper">
+    
+    <update id="updateMsgReadStatus" parameterType="java.util.List">
+      update ylb_msg_store SET msg_isread=
+      <foreach collection="list" item="id" index="index" separator=" " open="case id" close="end">
+        when #{id} THEN 1
+      </foreach>
+        WHERE id IN
+        <foreach collection="list" index="index" item="id" separator="," open="(" close=")">
+          #{id}
+        </foreach>
+    </update>
+    
+</mapper>

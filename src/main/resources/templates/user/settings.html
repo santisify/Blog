@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>用户中心-修改信息-ylbnotesHub</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/mycss.css}">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2080705_x7u3h1yrrfc.css">
+    <style>
+        #table-title tr th{
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<div th:replace="~{common/header::header(activeUrl='user')}"></div>
+
+<main role="main" class="container">
+
+    <div class="row">
+
+        <div th:replace="~{user/index::userShowPanel}"></div>
+
+        <div class="col-md-9 blog-main">
+
+            <br>
+            <hr class="layui-bg-blue">
+
+            <div class="my-3 p-3 bg-white rounded shadow-sm">
+
+                <form class="needs-validation" novalidate="" th:action="@{'/userinfo/update/'+${session.loginUser.getUid()}}" method="post">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="nickname">用户昵称</label>
+                            <input type="text" th:value="${userInfo.getNickname()}" name="nickname" class="form-control" id="nickname" placeholder="随简" required="">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="nickname">性别</label><br>
+                            <input type="radio" th:value="男" name="sex" th:field="*{userInfo.sex}" required="">男&emsp;
+                            <input type="radio" th:value="女" name="sex" th:field="*{userInfo.sex}" required="">女
+                            <!--<select id="sex" class="form-control">-->
+                                <!--<option name="sex" th:value="${userInfo.getSex()}">男生</option>-->
+                                <!--<option name="sex" th:value="${userInfo.getSex()}">女生</option>-->
+                            <!--</select>-->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="qq">QQ</label>
+                            <input type="text" th:value="${userInfo.getQq()}" name="qq" class="form-control" id="qq" required="">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="wechat">WeChat</label>
+                            <input type="text" th:value="${userInfo.getWechat()}" name="wechat" class="form-control" id="wechat"  required="">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="email">邮箱</label>
+                            <input type="email" th:value="${userInfo.getEmail()}" name="email" class="form-control" id="email" placeholder="suijian@qq.com">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="phone">手机</label>
+                            <input type="text" th:value="${userInfo.getPhone()}" name="phone" class="form-control" id="phone">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="work">工作</label>
+                        <input type="text" th:value="${userInfo.getWork()}" name="work" class="form-control" id="work" placeholder="程序猿">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="address">地址</label>
+                        <input type="text" th:value="${userInfo.getAddr()}" name="addr" class="form-control" id="address" placeholder="中国 ">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>自我介绍</label>
+                        <textarea  th:text="${userInfo.getBrief()}" type="text" placeholder="100字以内" name="brief" class="form-control"></textarea>
+                    </div>
+
+                    <hr class="mb-4">
+
+                    <button class="btn btn-primary btn-lg btn-block" type="submit"> 更新资料 <span th:text="${msg}"></span></button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr class="layui-bg-blue">
+</main>
+
+<div th:replace="~{common/footer::footer}"></div>
+
+<a class="to-top"><i class="iconfont icon-fanhuidingbu1" style="font-size:50px;color: #007bff"></i></a>
+<script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/toTop.js}"></script>
+<script th:src="@{/layui/layui.all.js}"></script>
+<script th:src="@{/js/daohang.js}"></script>
+
+
+</body>
+</html>

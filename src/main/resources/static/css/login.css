@@ -1,0 +1,121 @@
+.login-main{
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    overflow: auto;
+    background: #fff url("../images/loginback.png") no-repeat;
+    background-color: rgb(255, 255, 255);
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-image: url("../images/loginback.png");
+    background-size: auto;
+    background-origin: padding-box;
+    background-clip: border-box;
+    background-size: cover;
+}
+.main-content{
+    margin-left: auto;
+    margin-right: auto;
+    background: #fff;
+
+    width: 100%;
+    margin-top:15vh;
+    padding: 20px 50px;
+    border-radius: 4px;
+}
+.formDiv h2{
+    padding: 10px 0 20px;
+    font-size: 20px;
+    color: #545454;
+}
+.text-center{
+    text-align: center;
+}
+h2{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+}
+.gap {
+    margin-top: 20px;
+}
+.error-content {
+    text-indent: 18px;
+    height: 16px;
+}
+.errMsg {
+    color: rgba(253,66,56,.8);
+}
+.errMsg {
+    color: #f0483f;
+}
+* {
+    font-family: "微软雅黑","Verdana","宋体","Lucida Grande","Lucida Sans Unicode",Tahoma,sans-serif;
+}
+.lgbtn {
+    width: 100%;
+}
+
+.pull-right {
+    float: right !important;
+}
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.third-party-title {
+    border-bottom: 1px solid #dedede;
+}
+.biggap {
+    margin-top: 40px;
+}
+.third-party-title h5 {
+    margin-bottom: -5px;
+}
+.third-party-title span {
+    background-color: white;
+    padding: 0 10px 0 10px;
+    color: #545454;
+}
+h5{
+    font-size: 14px;
+}
+.third-auth {
+    text-align: center;
+    position: relative;
+    padding: 10px 0;
+}
+.third-auth a {
+    margin: 15px 20px 0 30px;
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    display: inline-block;
+}
+a.link {
+    color: #649efd;
+}
+a.link {
+    color: #649efd;
+}
+a, a:focus, a:active {
+    outline: 0;
+}
+a {
+    color: #00aed8;
+    text-decoration: none;
+}
+a {
+    background-color: transparent;
+}
+.gap .split-space {
+    color: #649efd;
+    margin: 0 10px;
+}

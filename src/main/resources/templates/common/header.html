@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<!-- 导航栏 -->
+<nav th:fragment="header" class="navbar sticky-top navbar-expand-lg navbar-light"
+     style="background-color: #ffffff;box-shadow: 0px -2px 10px #d0cccc;white-space:nowrap">
+    <div class="container">
+        <!--标题-->
+        <a class="navbar-brand" th:href="@{/}" id="headername">
+            <img th:src="@{/images/logo.png}" alt="ylbnoteshub">
+        </a>
+        <!--小屏幕下拉响应-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            <bg sec:authorize="isAuthenticated()">
+                <bg th:if="${session.msgCount>0}"><span class="layui-badge-dot"></span></bg>
+            </bg>
+        </button>
+        <!-- 导航  -->
+        <div class="collapse navbar-collapse" id="navbarsExample07">
+            <ul class="navbar-nav mr-auto">
+                <li th:class="${activeUrl=='index.html'?'nav-item active':'nav-item'}">
+                    <a class="nav-link" th:href="@{/index}">&emsp;首页 </a>
+                </li>
+                <li th:class="${activeUrl=='discover'?'nav-item active':'nav-item'}">
+                    <a class="nav-link" th:href="@{/discover}">&emsp;发现 </a>
+                </li>
+
+                <bg sec:authorize="!isAuthenticated()">
+                    <li th:class="${activeUrl=='follow'?'nav-item active':'nav-item'}">
+                        <a class="nav-link" th:href="@{/tofollow}">&emsp;关注 </a>
+                    </li>
+                </bg>
+                <bg sec:authorize="isAuthenticated()">
+                    <li th:class="${activeUrl=='follow'?'nav-item active':'nav-item'}">
+                        <a class="nav-link" th:href="@{'/tofollow/'+${session.loginUser.getUid()}}">&emsp;关注 </a>
+                    </li>
+                </bg>
+
+                <li th:class="${activeUrl=='download'?'nav-item active':'nav-item'}">
+                    <a class="nav-link" th:href="@{/download}">&emsp;资源下载 </a>
+                </li>
+
+            </ul>
+
+            <form class="layui-form" action="/search/1/20">
+                <input type="text" name="title" placeholder="想要搜什么" autocomplete="off" class="layui-input"
+                       id="layui-inputsousuo" th:value="${key}">
+                <button id="sousuo" class="layui-btn layui-btn-primary">
+                    <i class="iconfont icon-sousuo" id="sousuobtn"></i>
+                </button>
+            </form>
+            &emsp;
+            <!--如果未登录btn btn-sm btn-primary-->
+            <div sec:authorize="!isAuthenticated()">
+                <a class="btn btn-hover btn1" th:href="@{/register}" role="button">注册</a>
+                <a class="btn btn-primary btn1" th:href="@{/toLogin}" role="button">登录</a>
+            </div>
+
+            <!--如果已登录-->
+            <div sec:authorize="isAuthenticated()">
+                <ul class="layui-nav" style="padding: 0">
+
+                    <li class="layui-nav-item" lay-unselect style="white-space:nowrap">
+                        <bg th:if="${session.msgCount>0}">
+                            <span class="layui-badge" th:text="${session.msgCount}"></span>
+                        </bg>
+                        <a th:href="@{'/user/'+${session.loginUser.getUid()}}">
+                            <img th:src="${session.loginUser.getAvatar()}" class="layui-nav-img">
+                            <span th:text="${session.userInfo.getNickname()}" style="font-size: 14px"></span>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a class="dropdown-item" th:href="@{'/user/'+${session.loginUser.getUid()}}">个人中心</a></dd>
+                            <dd><a class="dropdown-item" th:href="@{'/userinfo/setting/'+${session.loginUser.getUid()}}">更新资料</a></dd>
+                            <dd><a class="dropdown-item" th:href="@{/chat}">私信</a></dd>
+                            <dd><div class="dropdown-divider"></div></dd>
+                            <dd> <a class="dropdown-item" th:href="@{/logout}">退出</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item1">
+                        <a class="btn btn-primary btn1" th:href="@{/blog/write}" role="button">写文章</a>
+                    </li>
+                    <a class="btn" id="smallexit" th:href="@{/logout}" role="button"  style="display: none">退出</a>
+
+                </ul>
+                <!--<ul class="navbar-nav mr-auto">-->
+                    <!--<li class="nav-item dropdown">-->
+                        <!--<a  style="color: rgba(0,0,0,.5);text-decoration: none" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                            <!--<img th:src="${session.loginUser.getAvatar()}" style="width: 30px;height:30px;border-radius: 50%;" alt="">-->
+                            <!--&lt;!&ndash;<span sec:authentication="name"></span>&ndash;&gt;-->
+                            <!--<span th:text="${session.userInfo.getNickname()}" style="font-size: 14px"></span>-->
+                            <!--&lt;!&ndash;<span th:text="${session.SPRING_SECURITY_CONTEXT.authentication.principal.username}"></span>&ndash;&gt;-->
+                        <!--</a>-->
+                        <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+                            <!--<a class="dropdown-item" th:href="@{'/user/'+${session.loginUser.getUid()}}">个人中心</a>-->
+                            <!--<a class="dropdown-item" th:href="@{'/userinfo/setting/'+${session.loginUser.getUid()}}">更新资料</a>-->
+                            <!--<a class="dropdown-item" th:href="@{'/user/update-avatar/'+${session.loginUser.getUid()}}">头像上传</a>-->
+                            <!--<div class="dropdown-divider"></div>-->
+                            <!--<a class="dropdown-item" th:href="@{/logout}">注销</a>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+
+</html>

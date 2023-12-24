@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>首页-ylbNotesHub</title>
+
+    <link rel="stylesheet" th:href="@{/swiper/swiper.min.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/mycss.css}">
+    <link rel="stylesheet" th:href="@{/zplayer/css/zplayer.min.css}">
+    <script th:src="@{/zplayer/js/zplayer.min.js}"></script>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2080705_x7u3h1yrrfc.css">
+</head>
+<body>
+<div th:replace="~{common/header::header(activeUrl='index.html')}"></div>
+
+<main role="main">
+
+    <div class="container">
+
+        <div class="row">
+            <!-- 左侧菜单 -->
+            <div class="col-md-2">
+                <div role="navigation" th:fragment="bar">
+                    <ul class="menu mt-6">
+                        <a th:href="@{/}" style="text-decoration:none;">
+                        <li th:class="${class=='one'?'menu-item menu_item_active menu-item_no_hover':'menu-item'}"><i class="iconfont icon-tuijian mr-5"></i>为你推荐</li>
+                        </a>
+                        <a th:href="@{/newblog}" style="text-decoration:none;">
+                        <li th:class="${class=='two'?'menu-item menu_item_active menu-item_no_hover':'menu-item'}"><i class="iconfont icon-icon01 mr-5"></i>最新内容</li>
+                        </a>
+                        <li><hr class="layui-bg-blue"></li>
+                        <a th:href="@{/blog/write}" style="text-decoration:none;">
+                        <li th:class="${class=='three'?'menu-item menu_item_active menu-item_no_hover':'menu-item'}"><i class="iconfont icon-bi-copy mr-5"></i>随笔记录</li>
+                        </a>
+                        <a th:href="@{/chat}" style="text-decoration:none;">
+                        <li th:class="${class=='four'?'menu-item menu_item_active menu-item_no_hover':'menu-item'}"><i class="iconfont icon-tixing mr-5"></i>私信消息</li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+            <!-- 轮播图 -->
+            <div class="col-md-8">
+
+                <!--开始轮播-->
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="images/slides/4.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="images/slides/3.png" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="images/slides/1.png" alt="">
+                        </div>
+                        <!-- 如果需要滚动条 -->
+                        <div class="swiper-scrollbar"></div>
+                    </div>
+                </div>
+
+                <br>
+                <hr class="layui-bg-blue">
+                <br>
+
+                <fieldset class="layui-elem-field">
+                    <legend><i class="layui-icon layui-icon-note" style="font-size: 25px"></i>&emsp;Here you can</legend>
+                    <div class="layui-field-box">
+                        &emsp;&emsp;&emsp;<i class="iconfont icon-bi-copy" style="font-size: 25px"></i>&emsp;
+                        <span>记录你的笔记、日常bug、生活趣事</span>
+                        <br>
+                        <br>
+                        &emsp;&emsp;&emsp;<i class="iconfont icon-remen-copy" style="font-size: 25px"></i>&emsp;
+                        <span>共享bug、解决生活烦恼</span>
+                        <br>
+                        <br>
+                        &emsp;&emsp;&emsp;<i class="iconfont icon-wenzhang1" style="font-size: 25px"></i>&emsp;
+                        <span>趣味生活分享给大家，最近有好看的电影吗？</span>
+                        <br>
+                        <br>
+                        &emsp;&emsp;&emsp;<i class="iconfont icon-remen26" style="font-size: 25px"></i>&emsp;
+                        <span>听说读写，听听音乐来解压吧~</span>
+                    </div>
+                </fieldset>
+
+            </div>
+            <!-- 右侧区域-->
+            <dv class="col-md-2">
+                <div th:replace="common/musicPlayer::musicPlayer"></div>
+            </dv>
+
+        </div>
+
+        <div class="row" style="height: 50px">
+            <div class="col-md-2"></div>
+            <div class="col-md-8"></div>
+        </div>
+
+        <div th:replace="common/musicPlayer::musicPlayer"></div>
+
+        <hr class="layui-bg-blue">
+
+    </div>
+</main>
+
+<div th:replace="~{common/footer::footer}"></div>
+
+<a class="to-top"><i class="iconfont icon-fanhuidingbu1" style="font-size:50px;color: #007bff"></i></a>
+<script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/swiper/swiper-3.4.2.jquery.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/layui/layui.all.js}"></script>
+<script th:src="@{/js/toTop.js}"></script>
+<script type="text/javascript" th:src="@{/js/myswiper.js}"></script>
+<script th:src="@{/js/daohang.js}"></script>
+</body>
+</html>
