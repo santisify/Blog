@@ -36,6 +36,7 @@ public class SendEmailService {
 
     @Value(("${ylbmail.captchalen}"))
     private int captchaLen;
+
     /**
      * 发送验证码到邮箱
      *

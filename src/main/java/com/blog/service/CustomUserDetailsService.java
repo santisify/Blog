@@ -29,7 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserRoleService roleService;
-    
+
     @Autowired
     private UserInfoService userInfoService;
 
@@ -52,9 +52,9 @@ public class CustomUserDetailsService implements UserDetailsService {
         //
         UserDetails userDetails = null;
 
-        if(user == null){
+        if (user == null) {
 
-            log.info("用户名或密码错误",username);
+            log.info("用户名或密码错误", username);
             throw new BadCredentialsException("用户名或密码错误");
         } else {
             UserInfo userInfo = userInfoService.getOneUserInfoByUid(user.getUid());
@@ -63,14 +63,14 @@ public class CustomUserDetailsService implements UserDetailsService {
             int msgCount = msgStoreService.getUnReadMsgCount(user.getUid());
             user.setUnreadMsg(msgCount);
             session.setAttribute("userInfo", userInfo);
-            session.setAttribute("loginUser",user);
+            session.setAttribute("loginUser", user);
             session.setAttribute("msgCount", msgCount);
 
             String password = user.getPassword();
             //用户角色
             Collection<GrantedAuthority> authorities = getAuthorities(user);
 
-            userDetails = new LoginUser(user,authorities);
+            userDetails = new LoginUser(user, authorities);
 
             // userDetails = new org.springframework.security.core.userdetails.User(username,password,
             //         true,
@@ -84,7 +84,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     //获取用户角色信息
-    public Collection<GrantedAuthority> getAuthorities(User user){
+    public Collection<GrantedAuthority> getAuthorities(User user) {
 
         ArrayList<GrantedAuthority> authlists = new ArrayList<>();
 

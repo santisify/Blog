@@ -18,17 +18,19 @@ public class CateGoryService {
 
     /**
      * 查询分类集合
+     *
      * @return
      */
-    public List<BlogCategory> getCategory(){
+    public List<BlogCategory> getCategory() {
         return cateGoryMapper.selectAll();
     }
 
     /**
      * 根据id查询文章
+     *
      * @param id
      */
-    public BlogCategory getCategoryById(Integer id){
+    public BlogCategory getCategoryById(Integer id) {
         return cateGoryMapper.selectByPrimaryKey(id);
     }
 }

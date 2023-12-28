@@ -13,7 +13,7 @@ public class DownloadService {
     @Autowired
     private DownloadMapper downloadMapper;
 
-    public List<Download> getDownSources(){
+    public List<Download> getDownSources() {
         return downloadMapper.selectAll();
     }
 }

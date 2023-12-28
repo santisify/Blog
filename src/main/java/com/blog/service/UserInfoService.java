@@ -23,18 +23,20 @@ public class UserInfoService {
 
     /**
      * 用户注册时注册详细信息
+     *
      * @param userInfo
      */
-    public void SaveUserInfo(UserInfo userInfo){
-         userInfoMapper.insert(userInfo);
+    public void SaveUserInfo(UserInfo userInfo) {
+        userInfoMapper.insert(userInfo);
     }
 
     /**
      * 根据用户uid查询用户详细信息
+     *
      * @param uid
      * @return
      */
-    public UserInfo getOneUserInfoByUid(String uid){
+    public UserInfo getOneUserInfoByUid(String uid) {
 
         Example example = new Example(UserInfo.class);
         Example.Criteria criteria = example.createCriteria();
@@ -49,7 +51,7 @@ public class UserInfoService {
     /**
      * 修改用户详细信息
      */
-    public Boolean updateUserInfo(String uid,UserInfo userInfo){
+    public Boolean updateUserInfo(String uid, UserInfo userInfo) {
         Example example = new Example(userInfo.getClass());
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("uid", uid);
@@ -60,18 +62,18 @@ public class UserInfoService {
      * 根据用户名和邮箱查询用户是否存在
      */
     @Transactional
-    public Boolean isExistByUnameAndEmail(String username,String email){
+    public Boolean isExistByUnameAndEmail(String username, String email) {
         //先根据账号查询用户id
         Example example1 = new Example(User.class);
         Example.Criteria criteria1 = example1.createCriteria();
-        criteria1.andEqualTo("username",username);
+        criteria1.andEqualTo("username", username);
         User user = userMapper.selectOneByExample(example1);
         //根据id查询该用户邮箱是否一致
         Example example = new Example(UserInfo.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("uid", user.getUid()).andEqualTo("email", email);
         UserInfo u = userInfoMapper.selectOneByExample(example);
-        if (u!=null){
+        if (u != null) {
             return true;
         }
         return false;
