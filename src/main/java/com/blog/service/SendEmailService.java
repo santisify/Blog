@@ -20,7 +20,7 @@ public class SendEmailService {
     private RedisUtil redisUtil;
 
     @Autowired
-    private JavaMailSenderImpl mailSender;
+    private JavaMailSenderImpl mailsend;
 
     @Value("${spring.mail.username}")
     private String serverEmail;
@@ -57,7 +57,7 @@ public class SendEmailService {
             stringBuilder.append("此验证码<strong>5分钟内</strong>有效。<br/>");
             stringBuilder.append("如果您没有进行上述操作，请忽略此邮件。");
 
-            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            MimeMessage mimeMessage = mailsend.createMimeMessage();
 
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
 
@@ -72,7 +72,7 @@ public class SendEmailService {
             //接收者邮箱
             helper.setTo(email);
 
-            mailSender.send(mimeMessage);
+            mailsend.send(mimeMessage);
             return true;
         }
         return false;
