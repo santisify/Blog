@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private PersistentTokenRepository persistentTokenRepository;
 
     @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception{
+    public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
 
@@ -38,8 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/index").permitAll()
                 .antMatchers(HttpMethod.GET,
-        "/*.html","/**/*.html","/**/*.css","/**/*.js","/images/**","/layui/**","/editormd/**","/zplayer/**","/swiper/**","/bootstrap/**","/favicon.ico").permitAll()
-                .antMatchers("/register","/login","/toLogin","/verifyCode","/checkusername","/sendemailcode").permitAll()
+                        "/*.html", "/**/*.html", "/**/*.css", "/**/*.js", "/images/**", "/layui/**", "/editormd/**", "/zplayer/**", "/swiper/**", "/bootstrap/**", "/favicon.ico").permitAll()
+                .antMatchers("/register", "/login", "/toLogin", "/verifyCode", "/checkusername", "/sendemailcode").permitAll()
                 .antMatchers("/swagger-ui.html").permitAll()
                 .antMatchers("/swagger-resources/**").permitAll()
                 .antMatchers("/webjars/**").permitAll()
@@ -72,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 记住我配置
         http.rememberMe().rememberMeParameter("remember")
                 .tokenRepository(persistentTokenRepository)
-                .tokenValiditySeconds(60*60*24*7)
+                .tokenValiditySeconds(60 * 60 * 24 * 7)
                 .userDetailsService(userDetailsService);
     }
 
@@ -85,7 +85,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     // 密码加密方式
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 

@@ -40,8 +40,8 @@ public class LoginController {
     @Resource
     private AuthenticationManager authenticationManager;
 
-    @GetMapping({"/","/index"})
-    public String index(Model model){
+    @GetMapping({"/", "/index"})
+    public String index(Model model) {
         model.addAttribute("class", "one");
         return "index";
     }
@@ -65,18 +65,18 @@ public class LoginController {
     }*/
 
     @GetMapping("/toLogin")
-    public String UserLogin(){
-    return "login";
+    public String UserLogin() {
+        return "login";
     }
 
     @GetMapping("/register")
-    public String toRegister(){
+    public String toRegister() {
         return "register";
     }
 
 
     @ModelAttribute("registerForm")
-    public RegisterForm registerForm(){
+    public RegisterForm registerForm() {
         return new RegisterForm();
     }
 
@@ -88,26 +88,26 @@ public class LoginController {
 
         try {
             //判断校验是否有错
-            if (result.hasErrors()){
+            if (result.hasErrors()) {
                 return "register";
             }
             //判断密码是否一致
-            if (!registerForm.getPassword().equals(registerForm.getRepassword())){
+            if (!registerForm.getPassword().equals(registerForm.getRepassword())) {
                 model.addAttribute("pmsg", "密码不一致");
                 return "register";
             }
 
             //获取验证码
-            String rediscode = (String)redisUtil.get(Constants.CAPTCHA_CODE_KEY + request.getRemoteAddr() + ":" +registerForm.getUsername());
+            String rediscode = (String) redisUtil.get(Constants.CAPTCHA_CODE_KEY + request.getRemoteAddr() + ":" + registerForm.getUsername());
             //判断redis中是否有验证码
-            if (StringUtils.isEmpty(rediscode)){
+            if (StringUtils.isEmpty(rediscode)) {
                 model.addAttribute("emsg", "验证码错误");
                 return "register";
             }
             //转为小写
             rediscode = rediscode.toLowerCase();
             //判断验证码是否一致
-            if (!rediscode.equals(registerForm.getVerifycode().toLowerCase())){
+            if (!rediscode.equals(registerForm.getVerifycode().toLowerCase())) {
                 model.addAttribute("username", registerForm.getUsername());
                 model.addAttribute("emsg", "验证码错误");
                 return "register";
@@ -133,41 +133,41 @@ public class LoginController {
                 userInfo.setEmail(registerForm.getEmail());
                 userInfoService.SaveUserInfo(userInfo);
 
-                model.addAttribute("msg","注册成功，快去登录吧~");
+                model.addAttribute("msg", "注册成功，快去登录吧~");
                 //注册成功，重定向到登录页面
                 return "register";
             }
         } catch (Exception e) {
-            logger.error("注册失败"+e);
+            logger.error("注册失败" + e);
             model.addAttribute("emsg", "服务器错误，请稍后再试");
             return "register";
         }
     }
 
     @PostMapping("/findpwd")
-    public String findPwd(@Validated RegisterForm registerForm, BindingResult result, Model model,HttpServletRequest request){
+    public String findPwd(@Validated RegisterForm registerForm, BindingResult result, Model model, HttpServletRequest request) {
         try {
             //判断校验是否有错
-            if (result.hasErrors()){
+            if (result.hasErrors()) {
                 return "findpwd";
             }
             //判断密码是否一致
-            if (!registerForm.getPassword().equals(registerForm.getRepassword())){
+            if (!registerForm.getPassword().equals(registerForm.getRepassword())) {
                 model.addAttribute("pmsg", "密码不一致");
                 return "findpwd";
             }
 
             //获取验证码
-            String rediscode = (String)redisUtil.get(Constants.CAPTCHA_CODE_KEY + request.getRemoteAddr() + ":" + registerForm.getUsername());
+            String rediscode = (String) redisUtil.get(Constants.CAPTCHA_CODE_KEY + request.getRemoteAddr() + ":" + registerForm.getUsername());
             //判断redis中是否有验证码
-            if (StringUtils.isEmpty(rediscode)){
+            if (StringUtils.isEmpty(rediscode)) {
                 model.addAttribute("emsg", "验证码错误");
                 return "findpwd";
             }
             //转为小写
             rediscode = rediscode.toLowerCase();
             //判断验证码是否一致
-            if (!rediscode.equals(registerForm.getVerifycode().toLowerCase())){
+            if (!rediscode.equals(registerForm.getVerifycode().toLowerCase())) {
                 model.addAttribute("username", registerForm.getUsername());
                 model.addAttribute("emsg", "验证码错误");
                 return "findpwd";
@@ -177,7 +177,7 @@ public class LoginController {
             if (!okEmail) {
                 model.addAttribute("emailmsg", "邮箱不一致");
                 return "findpwd";
-            }else {
+            } else {
                 User user = new User();
                 user.setUsername(registerForm.getUsername());
                 String password = new BCryptPasswordEncoder().encode(registerForm.getPassword());
@@ -189,7 +189,7 @@ public class LoginController {
                 return "findpwd";
             }
         } catch (Exception e) {
-            logger.info("找回密码失败"+e.getMessage());
+            logger.info("找回密码失败" + e.getMessage());
             model.addAttribute("emsg", "服务器错误，请稍后再试");
             return "findpwd";
         }
@@ -198,7 +198,7 @@ public class LoginController {
     /**
      * 判断是否是注册的邮箱
      */
-    public Boolean isOkEmail(String username,String email){
+    public Boolean isOkEmail(String username, String email) {
         return userInfoService.isExistByUnameAndEmail(username, email);
     }
 
@@ -207,17 +207,17 @@ public class LoginController {
      */
     @GetMapping("/checkusername")
     @ResponseBody
-    public String checkUsername(@RequestParam("username") String username){
+    public String checkUsername(@RequestParam("username") String username) {
 
         User user = userService.queryUserByName(username);
-        if(user != null){
+        if (user != null) {
             return "用户名已使用";
         }
         return null;
     }
 
     @GetMapping("/findpwd")
-    public String findPwd(){
+    public String findPwd() {
         return "findpwd";
     }
 
