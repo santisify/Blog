@@ -12,72 +12,77 @@
 </head>
 <body>
 <div class="container">
-<div class="login-main row">
-    <div class="main-content col-12 col-sm-10 col-md-8 col-lg-4">
-        <div class="formDiv">
-            <h2 class="text-center">登录</h2>
-            <form th:action="@{/login}" method="post" class="layui-form">
-                <div class="dataform">
-                    &nbsp;<i class="iconfont icon-denglu">&nbsp;</i>
-                    <input id="userName" name="username" type="text" class="layui-input" required placeholder="账号"
-                           maxlength="64" autocomplete="off">
-                    <div class="error-content">
-                        <span id="userNameErr" class="errMsg"></span>
-                    </div>
-
-                    &nbsp;<i class="iconfont icon-mima">&nbsp;</i>
-                    <input class="layui-input" type="password" name="password" placeholder="密码" id="pwd" maxlength="20"
-                           required>
-                    <div class="error-content">
-                        &emsp;<span id="passwordErr" class="errMsg" th:if="${param.error}"
-                              th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
-                    </div>
-
-                    <div class="btn-warp gap">
-                        <div class="text-center">
-                            <input type="hidden" value="jsform" id="_app">
-                            <button type="submit" id="btnLogin" class="layui-btn layui-btn-radius layui-btn-normal lgbtn">登录</button>
+    <div class="login-main row">
+        <div class="main-content col-12 col-sm-10 col-md-8 col-lg-4">
+            <div class="formDiv">
+                <h2 class="text-center">登录</h2>
+                <form th:action="@{/login}" method="post" class="layui-form">
+                    <div class="dataform">
+                        &nbsp;<i class="iconfont icon-denglu">&nbsp;</i>
+                        <input id="userName" name="username" type="text" class="layui-input" required placeholder="账号"
+                               maxlength="64" autocomplete="off">
+                        <div class="error-content">
+                            <span id="userNameErr" class="errMsg"></span>
                         </div>
-                    </div>
-                    <div class="gap">
 
-                        <div class="pull-right" style="margin-top: 6px"><a th:href="@{/findpwd}" class="link">忘记密码</a>
-                            <span class="split-space">|</span><a th:href="@{/register}" class="link">新用户注册</a></div>
-
-                        <div class="pretty-box">
-                            <input type="checkbox" name="remember" title="记住我" lay-skin="primary">
+                        &nbsp;<i class="iconfont icon-mima">&nbsp;</i>
+                        <input class="layui-input" type="password" name="password" placeholder="密码" id="pwd"
+                               maxlength="20"
+                               required>
+                        <div class="error-content">
+                            &emsp;<span id="passwordErr" class="errMsg" th:if="${param.error}"
+                                        th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
                         </div>
-                    </div>
 
-                    <div class="biggap third-party-title">
-                        <h5 class="text-center"><span></span></h5>
-                    </div>
+                        <div class="btn-warp gap">
+                            <div class="text-center">
+                                <input type="hidden" value="jsform" id="_app">
+                                <button type="submit" id="btnLogin"
+                                        class="layui-btn layui-btn-radius layui-btn-normal lgbtn">登录
+                                </button>
+                            </div>
+                        </div>
+                        <div class="gap">
 
-                    <!--<div class="biggap third-party-title">-->
+                            <div class="pull-right" style="margin-top: 6px"><a th:href="@{/findpwd}"
+                                                                               class="link">忘记密码</a>
+                                <span class="split-space">|</span><a th:href="@{/register}" class="link">新用户注册</a>
+                            </div>
+
+                            <div class="pretty-box">
+                                <input type="checkbox" name="remember" title="记住我" lay-skin="primary">
+                            </div>
+                        </div>
+
+                        <div class="biggap third-party-title">
+                            <h5 class="text-center"><span></span></h5>
+                        </div>
+
+                        <!--<div class="biggap third-party-title">-->
                         <!--<h5 class="text-center"><span>第三方账号登录</span></h5>-->
-                    <!--</div>-->
-                    <!--<div class="third-auth">-->
+                        <!--</div>-->
+                        <!--<div class="third-auth">-->
 
                         <!--<a title="用QQ账户登录" href="javascript:;">-->
-                            <!--<i class="layui-icon layui-icon-login-qq" style="font-size: 40px;color: #1E9FFF;"></i>-->
+                        <!--<i class="layui-icon layui-icon-login-qq" style="font-size: 40px;color: #1E9FFF;"></i>-->
                         <!--</a>-->
                         <!--<a title="用微信账户登录" href="javascript:;">-->
-                            <!--<i class="layui-icon layui-icon-login-wechat" style="font-size: 40px;color: #1E9FFF;"></i>-->
+                        <!--<i class="layui-icon layui-icon-login-wechat" style="font-size: 40px;color: #1E9FFF;"></i>-->
                         <!--</a>-->
-                    <!--</div>-->
+                        <!--</div>-->
 
-                </div>
-            </form>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
 
-    <div th:replace="~{common/footer::footer}"></div>
-</div>
+        <div th:replace="~{common/footer::footer}"></div>
+    </div>
 
 </div>
 <script th:src="@{/layui/layui.all.js}"></script>
 <script>
-    layui.use('form', function(){
+    layui.use('form', function () {
         var form = layui.form;
     });
 </script>

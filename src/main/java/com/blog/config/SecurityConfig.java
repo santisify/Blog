@@ -64,7 +64,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         //基于token，不适用session
         //http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
         // 注销配置
         http.headers().contentTypeOptions().disable();
         http.logout().logoutSuccessUrl("/");

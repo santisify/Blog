@@ -5,13 +5,13 @@ import java.util.Random;
 
 public class RandomUtils extends org.apache.commons.lang3.RandomUtils {
 
-    private static final char[] CODE_SEQ = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J',
+    private static final char[] CODE_SEQ = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J',
             'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W',
-            'X', 'Y', 'Z', '2', '3', '4', '5', '6', '7', '8', '9' ,'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'j',
+            'X', 'Y', 'Z', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'j',
             'k', 'm', 'n', 'o', 'p', 'r', 'q', 'r', 's', 't', 'u',
-            'v', 'w', 'x','z' };
+            'v', 'w', 'x', 'z'};
 
-    private static final char[] NUMBER_ARRAY = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+    private static final char[] NUMBER_ARRAY = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
     private static Random random = new Random();
 

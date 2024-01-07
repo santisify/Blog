@@ -30,7 +30,7 @@ public class Swagger2Config {
 				.build();
 	}
 
-	private ApiInfo webApiInfo(){
+	private ApiInfo webApiInfo() {
 		return new ApiInfoBuilder()
 				.title("y-Api")
 				.description("y-Api")
@@ -38,5 +38,4 @@ public class Swagger2Config {
 				.contact(new Contact("y", "http://y.com", "424559192@qq.com"))
 				.build();
 	}
-
 }

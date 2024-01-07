@@ -10,12 +10,18 @@ function toComment() {
     var topicId = $("input[name='topicId']").val();
     var content = $("textarea[name='content']").val();
 
-    if (content.trim()==""){
+    if (content.trim() == "") {
         banktips();
         return false;
     }
 
-    var params = {"userId":userId,"userName":userName,"userAvatar":userAvatar,"topicId":topicId,"content":content};
+    var params = {
+        "userId": userId,
+        "userName": userName,
+        "userAvatar": userAvatar,
+        "topicId": topicId,
+        "content": content
+    };
 
     //评论栏置空
     $("textarea[name='content']").val(" ");
@@ -23,7 +29,7 @@ function toComment() {
     //提交异步请求
 
     $.post(
-        "/blog/comment/"+bid+"/"+uid,
+        "/blog/comment/" + bid + "/" + uid,
         params,
         function (data) {
             //赋值给对应标签div
@@ -44,9 +50,9 @@ function delComment(obj) {
     var cid = $(obj).eq(0).children("input").val();
 
     $.ajax({
-        url:"/blog/comment/delete/"+bid+"/"+cid,
-        type:"GET",
-        success:function (data) {
+        url: "/blog/comment/delete/" + bid + "/" + cid,
+        type: "GET",
+        success: function (data) {
             $("#refalsh").html(data);
             tips();
         }
@@ -58,27 +64,27 @@ function delComment(obj) {
 }
 
 //添加关注
-function addFollow(uid,fid) {
+function addFollow(uid, fid) {
 
     $.ajax({
-        url:"/follow/"+uid+"/"+fid,
-        type:"GET",
-        success:function (data) {
+        url: "/follow/" + uid + "/" + fid,
+        type: "GET",
+        success: function (data) {
             $("#artcount").html(data);
             $("#follow1").hide();
             $("#follow2").show();
-            $("#follow2").css("margin-top","0rem");
+            $("#follow2").css("margin-top", "0rem");
         }
     });
 }
 
 //取消关注
-function cancelFollow(uid,fid) {
+function cancelFollow(uid, fid) {
 
     $.ajax({
-        url:"/follow/cancel/"+uid+"/"+fid,
-        type:"GET",
-        success:function (data) {
+        url: "/follow/cancel/" + uid + "/" + fid,
+        type: "GET",
+        success: function (data) {
             $("#artcount").html(data);
             $("#follow2").hide();
             $("#follow1").show();
@@ -87,15 +93,15 @@ function cancelFollow(uid,fid) {
 }
 
 //是否关注
-function isFollow(uid,fid) {
+function isFollow(uid, fid) {
 
     $.ajax({
-        url:"/follow/isfollow/"+uid+"/"+fid,
-        type:"GET",
-        success:function (data) {
-            if (data==200){
+        url: "/follow/isfollow/" + uid + "/" + fid,
+        type: "GET",
+        success: function (data) {
+            if (data == 200) {
                 $("#follow2").show();
-            }else if (data==100){
+            } else if (data == 100) {
                 $("#follow1").show();
             }
         }
@@ -103,16 +109,16 @@ function isFollow(uid,fid) {
 }
 
 //添加收藏
-function toCollect(uid,articleId,bid) {
+function toCollect(uid, articleId, bid) {
 
-    var param = {"uid":uid,"articleId":articleId,"bid":bid};
+    var param = {"uid": uid, "articleId": articleId, "bid": bid};
 
     $.post(
         "/blog/collect",
         param,
         function (data) {
-            if (data==200){
-                isCollect(uid,bid);
+            if (data == 200) {
+                isCollect(uid, bid);
             }
         }
     )
@@ -120,14 +126,14 @@ function toCollect(uid,articleId,bid) {
 }
 
 //移除收藏
-function removeCollect(uid,bid) {
+function removeCollect(uid, bid) {
 
     $.ajax({
-        url:"/blog/recollect/"+uid+"/"+bid,
-        type:"GET",
-        success:function (data) {
-            if (data==200){
-                isCollect(uid,bid);
+        url: "/blog/recollect/" + uid + "/" + bid,
+        type: "GET",
+        success: function (data) {
+            if (data == 200) {
+                isCollect(uid, bid);
             }
         }
     })
@@ -135,12 +141,12 @@ function removeCollect(uid,bid) {
 }
 
 //是否收藏
-function isCollect(uid,bid) {
+function isCollect(uid, bid) {
 
     $.ajax({
-        url:"/blog/iscollect/"+uid+"/"+bid,
-        type:"GET",
-        success:function (data) {
+        url: "/blog/iscollect/" + uid + "/" + bid,
+        type: "GET",
+        success: function (data) {
             $("#iscollect").html(data);
         }
     })
@@ -154,16 +160,16 @@ function flashtime() {
 function tips() {
 
     // //提示
-    layui.use('layer', function(){
+    layui.use('layer', function () {
         var layer = layui.layer;
-        layer.msg('删除成功',{offset:'70%'});
+        layer.msg('删除成功', {offset: '70%'});
     });
 }
 
 function banktips() {
 
     // //提示
-    layui.use('layer', function(){
+    layui.use('layer', function () {
         var layer = layui.layer;
         layer.msg('请输入内容');
     });

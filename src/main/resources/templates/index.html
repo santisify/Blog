@@ -17,33 +17,40 @@
 <div th:replace="~{common/header::header(activeUrl='index.html')}"></div>
 
 <main role="main">
-
     <div class="container">
-
         <div class="row">
             <!-- 左侧菜单 -->
             <div class="col-md-2">
                 <div role="navigation" th:fragment="bar">
                     <ul class="menu mt-6">
                         <a th:href="@{/}" style="text-decoration:none;">
-                        <li th:class="${class=='one'?'menu-item menu_item_active menu-item_no_hover':'menu-item'}"><i class="iconfont icon-tuijian mr-5"></i>为你推荐</li>
+                            <li th:class="${class=='one'?'menu-item menu_item_active menu-item_no_hover':'menu-item'}">
+                                <i class="iconfont icon-tuijian mr-5"></i>为你推荐
+                            </li>
                         </a>
                         <a th:href="@{/newblog}" style="text-decoration:none;">
-                        <li th:class="${class=='two'?'menu-item menu_item_active menu-item_no_hover':'menu-item'}"><i class="iconfont icon-icon01 mr-5"></i>最新内容</li>
+                            <li th:class="${class=='two'?'menu-item menu_item_active menu-item_no_hover':'menu-item'}">
+                                <i class="iconfont icon-icon01 mr-5"></i>最新内容
+                            </li>
                         </a>
-                        <li><hr class="layui-bg-blue"></li>
+                        <li>
+                            <hr class="layui-bg-blue">
+                        </li>
                         <a th:href="@{/blog/write}" style="text-decoration:none;">
-                        <li th:class="${class=='three'?'menu-item menu_item_active menu-item_no_hover':'menu-item'}"><i class="iconfont icon-bi-copy mr-5"></i>随笔记录</li>
+                            <li th:class="${class=='three'?'menu-item menu_item_active menu-item_no_hover':'menu-item'}">
+                                <i class="iconfont icon-bi-copy mr-5"></i>随笔记录
+                            </li>
                         </a>
                         <a th:href="@{/chat}" style="text-decoration:none;">
-                        <li th:class="${class=='four'?'menu-item menu_item_active menu-item_no_hover':'menu-item'}"><i class="iconfont icon-tixing mr-5"></i>私信消息</li>
+                            <li th:class="${class=='four'?'menu-item menu_item_active menu-item_no_hover':'menu-item'}">
+                                <i class="iconfont icon-tixing mr-5"></i>私信消息
+                            </li>
                         </a>
                     </ul>
                 </div>
             </div>
             <!-- 轮播图 -->
             <div class="col-md-8">
-
                 <!--开始轮播-->
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
@@ -66,7 +73,8 @@
                 <br>
 
                 <fieldset class="layui-elem-field">
-                    <legend><i class="layui-icon layui-icon-note" style="font-size: 25px"></i>&emsp;Here you can</legend>
+                    <legend><i class="layui-icon layui-icon-note" style="font-size: 25px"></i>&emsp;Here you can
+                    </legend>
                     <div class="layui-field-box">
                         &emsp;&emsp;&emsp;<i class="iconfont icon-bi-copy" style="font-size: 25px"></i>&emsp;
                         <span>记录你的笔记、日常bug、生活趣事</span>

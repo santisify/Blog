@@ -51,14 +51,14 @@ public class FileUploadUtils {
         return name;
     }
 
-    private static final File getAbsoluteFile(String path,String fileName) throws IOException {
+    private static final File getAbsoluteFile(String path, String fileName) throws IOException {
         try {
             //按照年月份进行分类：
             Calendar instance = Calendar.getInstance();
             instance.get(Calendar.YEAR);
             String year = String.valueOf(instance.get(Calendar.YEAR));
-            String month = (instance.get(Calendar.MONTH) + 1)+"月";
-            path = path + File.separator +  year + File.separator + month;
+            String month = (instance.get(Calendar.MONTH) + 1) + "月";
+            path = path + File.separator + year + File.separator + month;
 
             File realPath = new File(path + File.separator + fileName);
             if (!realPath.getParentFile().exists()) {
@@ -69,7 +69,7 @@ public class FileUploadUtils {
             }
             return realPath;
         } catch (IOException e) {
-            throw new IOException(e.getMessage(),e);
+            throw new IOException(e.getMessage(), e);
         }
     }
 
@@ -79,19 +79,18 @@ public class FileUploadUtils {
         assert originalFilename != null;
         int i = originalFilename.lastIndexOf(".");
         String suffix = originalFilename.substring(i + 1);
-        String outFilename = filename + "."+suffix;
+        String outFilename = filename + "." + suffix;
         return outFilename;
     }
 
-    private static final String getPathFileName(String uploadDir, String fileName) throws IOException
-    {
-        int i = BlogConfig.getProfile().length() +1;
+    private static final String getPathFileName(String uploadDir, String fileName) throws IOException {
+        int i = BlogConfig.getProfile().length() + 1;
         String currentDir = uploadDir.substring(i);
         Calendar instance = Calendar.getInstance();
         instance.get(Calendar.YEAR);
         String year = String.valueOf(instance.get(Calendar.YEAR));
-        String month = (instance.get(Calendar.MONTH) + 1)+"月";
-        String pathFileName = Constants.RESOURCE_PREFIX + "/" + currentDir + "/" +  year + "/" + month + "/" + fileName;
+        String month = (instance.get(Calendar.MONTH) + 1) + "月";
+        String pathFileName = Constants.RESOURCE_PREFIX + "/" + currentDir + "/" + year + "/" + month + "/" + fileName;
         return pathFileName;
     }
 }

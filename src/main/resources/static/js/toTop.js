@@ -7,9 +7,9 @@
  *  License: Licensed under MIT
  **/
 
-(function( $ ){
+(function ($) {
     'use strict';
-    $.fn.toTop = function(opt){
+    $.fn.toTop = function (opt) {
         //variables
         var elem = this;
         var win = $(window);
@@ -29,11 +29,11 @@
             'cursor': 'pointer'
         });
 
-        if(options.autohide){
+        if (options.autohide) {
             elem.css('display', 'none');
         }
 
-        if(options.position){
+        if (options.position) {
             elem.css({
                 'position': 'fixed',
                 'right': options.right,
@@ -41,44 +41,43 @@
             });
         }
 
-        elem.click(function(){
+        elem.click(function () {
             doc.animate({scrollTop: 0}, options.speed);
         });
 
-        win.scroll(function(){
+        win.scroll(function () {
             var scrolling = win.scrollTop();
 
-            if(options.autohide){
-                if(scrolling > options.offset){
+            if (options.autohide) {
+                if (scrolling > options.offset) {
                     elem.fadeIn(options.speed);
-                }
-                else elem.fadeOut(options.speed);
+                } else elem.fadeOut(options.speed);
             }
 
         });
 
     };
 
-}( jQuery ));
+}(jQuery));
 
 $('.to-top').toTop();
 
 $("#sousuo").hover(function () {
-    $("#sousuobtn").css("color","white")
+    $("#sousuobtn").css("color", "white")
 })
 $("#sousuobtn").hover(function () {
-    $("#sousuobtn").css("color","white")
+    $("#sousuobtn").css("color", "white")
 })
 $("#sousuo").mouseout(function () {
-    $("#sousuobtn").css("color","#007bff")
+    $("#sousuobtn").css("color", "#007bff")
 })
 
 $(function () {
     var width = window.innerWidth;
-    if (width<=992){
+    if (width <= 992) {
         $("#smallexit").show();
     }
-    if (width>992){
+    if (width > 992) {
         $("#smallexit").hide();
     }
 })
@@ -87,7 +86,7 @@ window.onresize = function () {
     if (!$(".navbar-toggler").is(':hidden')) {
         $("#smallexit").show();
     }
-    if ($(".navbar-toggler").is(':hidden')){
+    if ($(".navbar-toggler").is(':hidden')) {
         $("#smallexit").hide();
     }
 };
